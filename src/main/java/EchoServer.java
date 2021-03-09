@@ -1,4 +1,4 @@
-import com.sun.xml.internal.bind.v2.TODO;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,6 +27,12 @@ public class EchoServer {
         echoServer.runProgram();
     }
 
+    public static String getHelp() {
+        String returnValue ="";
+
+        return returnValue;
+    }
+
     private void runProgram() {
 
 
@@ -39,7 +45,7 @@ public class EchoServer {
                 PrintWriter printWriter = new PrintWriter(client.getOutputStream(),true);
                 BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream()));
 
-                //TODO; Handle input like this; CONNECT#Kurt
+
                 String input = br.readLine();
                 System.out.println(input);
                 String name = input.substring(8);
@@ -47,8 +53,7 @@ public class EchoServer {
                         //SEND#Peter#Hello Peter
                 printWriter.println("Farvel");
                 client.close();
-                // TODO; klargøre den delte resource til beskederne;
-                //TODO; læg klienten ind i en delt resource, så man kan slå den op på navnet (hashmap)
+
 
                 // skal laves imorgen!!!
                 //ClientHandler cl = new ClientHandler(name,client,allmsg);
