@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+
 public class ChatServer {
 
-    private static int PORT_ID = 9090;
+    private static int PORT_ID = 8088;
 
     private static ArrayList<ClientHandler> clients = new ArrayList<>();
     private static ExecutorService pool = Executors.newFixedThreadPool(4);
@@ -17,23 +18,18 @@ public class ChatServer {
 
     public static void main (String[] args) throws IOException {
         ServerSocket listener = new ServerSocket(PORT_ID);
+        WriteLogEntriesToLogFile logger = new WriteLogEntriesToLogFile();
 
         while(true){
-            System.out.println("Server waiting for connection.");
+            logger.logEventInfo("Server is running and waiting for a connection to be established");
+            System.out.println("Server waiting for connection...");
             Socket client = listener.accept();
-            System.out.println("Server connected to a client.");
+            logger.logEventInfo("A client has connected to the server");
+            System.out.println("Server connected to a client...");
             ClientHandler clientThread = new ClientHandler(client,clients);
             clients.add(clientThread);
-
             pool.execute(clientThread);
         }
     }
-<<<<<<< HEAD
 }
-=======
 
-
-
-
-}
->>>>>>> 7653ab1d7a0fd6766970b78cd5e79f21331a3c84

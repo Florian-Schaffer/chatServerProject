@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-//import com.sun.xml.internal.bind.v2.TODO;
-=======
-
->>>>>>> 7653ab1d7a0fd6766970b78cd5e79f21331a3c84
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
