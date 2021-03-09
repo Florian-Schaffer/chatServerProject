@@ -27,7 +27,7 @@ public class ChatServer {
             logger.logEventInfo("Server is running and waiting for a connection to be established");
             System.out.println("Server waiting for connection...");
             Socket client = listener.accept();
-<<<<<<< HEAD
+
             System.out.println("Server connected to a client.");
             InputStreamReader ir = new InputStreamReader(client.getInputStream());
             PrintWriter printWriter = new PrintWriter(client.getOutputStream(),true);
@@ -39,10 +39,10 @@ public class ChatServer {
             //SEND#Peter#Hello Peter
             printWriter.println("Farvel");
             client.close();
-=======
+
             logger.logEventInfo("A client has connected to the server");
             System.out.println("Server connected to a client...");
->>>>>>> ff1d99dadeb66d9c95963af7f639036b7e3ab620
+
             ClientHandler clientThread = new ClientHandler(client,clients);
             clients.add(clientThread);
             pool.execute(clientThread);
