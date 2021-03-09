@@ -1,4 +1,7 @@
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -24,8 +27,22 @@ public class ChatServer {
             logger.logEventInfo("Server is running and waiting for a connection to be established");
             System.out.println("Server waiting for connection...");
             Socket client = listener.accept();
+<<<<<<< HEAD
+            System.out.println("Server connected to a client.");
+            InputStreamReader ir = new InputStreamReader(client.getInputStream());
+            PrintWriter printWriter = new PrintWriter(client.getOutputStream(),true);
+            BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            String input = br.readLine();
+            System.out.println(input);
+            String name = input.substring(8);
+            //CONNECT#Kurt
+            //SEND#Peter#Hello Peter
+            printWriter.println("Farvel");
+            client.close();
+=======
             logger.logEventInfo("A client has connected to the server");
             System.out.println("Server connected to a client...");
+>>>>>>> ff1d99dadeb66d9c95963af7f639036b7e3ab620
             ClientHandler clientThread = new ClientHandler(client,clients);
             clients.add(clientThread);
             pool.execute(clientThread);

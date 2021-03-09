@@ -11,7 +11,7 @@ import java.util.concurrent.*;
 
 public class EchoServer {
     //public static final int DEFAULT_PORT = 2345;
-    ConcurrentMap<String,Socket> hashmap = new ConcurrentHashMap<>();
+    //ConcurrentMap<String,Socket> hashmap = new ConcurrentHashMap<>();
     BlockingQueue<String> allmsg = new ArrayBlockingQueue<String>(200);
 
 
