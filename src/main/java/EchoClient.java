@@ -6,35 +6,45 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class EchoClient {
-    Socket socket;
+    private static Socket socket;
     PrintWriter pw;
     Scanner scanner;
 
-    //String serverIP = "123. 123.0.4";
-    // int serverPort = 8088;
+    //123. 123.0.4
+    private static String serverIP = "127.0.0.1";
+    private static int serverPort = 9090;
 
 
-    public static void main(String[] args) {
-        EchoClient echoClient = new EchoClient();
-        echoClient.runProgram();
-    }
-        /*try {
-            new EchoClient().connect("localhost",8088);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static void main(String[] args) throws IOException {
+       /* EchoClient echoClient = new EchoClient();
+        echoClient.runProgram();*/
+
+        Socket socket = new Socket(serverIP,serverPort);
+        ServerConnection serverConn = new ServerConnection(socket);
+        BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
+
+        new Thread(serverConn).start();
+
+
+
+        while(true) {
+            System.out.println("> ");
+            String command = keyboard.readLine();
+
+            if(command.equals("exit"))break;
+
+            out.println(command);
+            
         }
-        echoClient.runProgram();/*
+
+        socket.close();
+        System.exit(0);
 
     }
 
-    /*public void connect (String address, int port) throws IOException {
-        socket = new Socket(address,port);
-        pw = new PrintWriter(socket.getOutputStream(),true);
-        scanner = new Scanner(socket.getInputStream());
-        System.out.println(scanner.nextLine());
-    }*/
-
-    private void runProgram() {
+   /* private void runProgram() {
         try {
             Socket socket = new Socket("localhost",8088);
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -43,5 +53,5 @@ public class EchoClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }
