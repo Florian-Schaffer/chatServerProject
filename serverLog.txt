@@ -1,16 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE log SYSTEM "logger.dtd">
-<log>
-<record>
-  <date>2021-03-09T10:02:07.908262100Z</date>
-  <millis>1615284127908</millis>
-  <nanos>262100</nanos>
-  <sequence>0</sequence>
-  <logger>com.javacodegeeks.snippets.core</logger>
-  <level>SEVERE</level>
-  <class>WriteLogEntriesToLogFile</class>
-  <method>main</method>
-  <thread>1</thread>
-  <message>severe message</message>
-</record>
-</log>
+
