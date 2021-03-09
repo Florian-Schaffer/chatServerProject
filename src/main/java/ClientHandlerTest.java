@@ -11,11 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class ClientHandlerTest {
 ClientHandler clientHandler;
 Thread testThread;
+    BlockingQueue<String> allmsg;
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
         String name = "Kurt";
-        BlockingQueue<String> allmsg = new ArrayBlockingQueue<String>(200);
+        allmsg = new ArrayBlockingQueue<String>(200);
         PrintWriter pw = new PrintWriter(System.out);
         String clientInput = "SEND#Lone#Hello Lone\n";
         BufferedReader br = new BufferedReader(new StringReader(clientInput));
@@ -24,7 +25,9 @@ Thread testThread;
         //public ClientHandler(String name, BufferedReader br, PrintWriter pw, BlockingQueue<String> allmsg)
     }
     @Test
-    void testSendToDispath(){
+    void testSendToDispath() throws InterruptedException {
         testThread.start();
+        testThread.join();
+        System.out.println(allmsg);
     }
 }
