@@ -1,1 +1,16 @@
 
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-03-09T11:58:08.442746Z</date>
+  <millis>1615291088442</millis>
+  <nanos>746000</nanos>
+  <sequence>0</sequence>
+  <logger>com.javacodegeeks.snippets.core</logger>
+  <level>INFO</level>
+  <class>WriteLogEntriesToLogFile</class>
+  <method>logEventInfo</method>
+  <thread>1</thread>
+  <message>Server is running and waiting for a connection to be established</message>
+</record>

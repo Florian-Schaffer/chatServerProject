@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 
 public class ChatServer {
 
-    private static int PORT_ID = 9090;
+    private static int PORT_ID = 8088;
 
     private static ArrayList<ClientHandler> clients = new ArrayList<>();
     private static ExecutorService pool = Executors.newFixedThreadPool(4);
