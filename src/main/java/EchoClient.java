@@ -12,7 +12,7 @@ public class EchoClient {
 
     //123. 123.0.4
     private static String serverIP = "127.0.0.1";
-    private static int serverPort = 9090;
+    private static int serverPort = 8088;
 
 
     public static void main(String[] args) throws IOException {
