@@ -36,22 +36,32 @@ public class ClientHandler implements Runnable{
 
     }
     public void Protocol(){
-        while(true){
+        //while(true){
             String request = null;
             try {
                 request = in.readLine();
+                //TODO: SEND#Lone#Hej med dig (Send fra Kurt)
+                // TODO: Sendes til dispatcheren
+                String messages = "SEND#Kurt,Lone#Hej med dig";
+                allmsg.add(messages);
+
+
+
+
+
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if(request.contains("help")){
+            /*if(request.contains("help")){
                 out.println(EchoServer.getHelp());
             }else if(request.startsWith("/s")){
                 int firstSpace = request.indexOf(" ");
                 if(firstSpace != -1){
                     globalMessage(request.substring(firstSpace+1));
                 }
-            }
-        }
+            }*/
+       // }
     }
 
 
@@ -59,11 +69,5 @@ public class ClientHandler implements Runnable{
     public void run() {
         Protocol();
 
-    }
-
-    private void globalMessage(String msg) {
-        for(ClientHandler aClient : clients){
-            aClient.out.println(msg);
-        }
     }
 }

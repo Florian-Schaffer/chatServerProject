@@ -9,10 +9,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.*;
 
+
 public class EchoServer {
     //public static final int DEFAULT_PORT = 2345;
-    //ConcurrentMap<String,Socket> hashmap = new ConcurrentHashMap<>();
+
+    ConcurrentMap<String,Socket> allClients = new ConcurrentHashMap<>();
     BlockingQueue<String> allmsg = new ArrayBlockingQueue<String>(200);
+    ConcurrentMap<String,PrintWriter> allNamedPrintwriters = new ConcurrentHashMap<>();
 
 
 
@@ -36,6 +39,9 @@ public class EchoServer {
 
         try {
             ServerSocket ss = new ServerSocket(8088);
+            Dispatcher dispatcher = new Dispatcher(allmsg,allNamedPrintwriters);
+            dispatcher.start();
+
             while (true) {
                 Socket client = ss.accept();
 
@@ -47,20 +53,17 @@ public class EchoServer {
                 String input = br.readLine();
                 System.out.println(input);
                 String name = input.substring(8);
+                allClients.put(name,client);
+                allNamedPrintwriters.put(name,printWriter);
                         //CONNECT#Kurt
                         //SEND#Peter#Hello Peter
-                printWriter.println("Farvel");
-                client.close();
 
 
-                // skal laves imorgen!!!
-                //ClientHandler cl = new ClientHandler(name,client,allmsg);
-
-                //cl.greeting();
-                //cl.protocol();
+                ClientHandler cl = new ClientHandler(name,br, printWriter, allmsg);
+                Thread t = new Thread(cl);
+                t.start();
             }
 
-            //hashmap.put("Kurt",client);
 
         } catch (IOException e) {
             e.printStackTrace();
