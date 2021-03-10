@@ -64,6 +64,7 @@ public class EchoServer {
                 ClientHandler cl = new ClientHandler(name,br, printWriter, allmsg);
                 Thread t = new Thread(cl);
                 t.start();
+                allmsg.add("ONLINE#");
             }
 
 

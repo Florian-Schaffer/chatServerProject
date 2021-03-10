@@ -15,6 +15,7 @@ public class ClientHandler implements Runnable{
     BlockingQueue<String> allmsg;
     String name;
     String messages;
+    String[] commandArray;
 
     public ClientHandler(Socket clientSocket, ArrayList<ClientHandler> clients) throws IOException{
         this.client = clientSocket;
@@ -39,12 +40,14 @@ public class ClientHandler implements Runnable{
     public void Protocol() throws IOException {
         while(true){
             String command = in.readLine();
-            System.out.println("> ");
+            System.out.println(command);
 
+            commandArray = command.split("#");
 
-                switch(command) {
+                switch(commandArray[0]) {
                     case "CONNECT":
                         handleConnect();
+
                         break;
                     case "SEND":
                         handleSend(command);
@@ -95,14 +98,18 @@ public class ClientHandler implements Runnable{
 
 
     private void handleConnect() {
+        String out = "ONLINE#";
+        allmsg.add(out);
     }
 
     private void handleSend(String msg){
-        allmsg.add(msg);
+        String out = commandArray[0]+"#"+name+","+commandArray[1]+"#"+commandArray[2];
+        allmsg.add(out);
     }
 
     private void handleClose(int i){
-
+        String close = "CLOSE#"+name+"#"+i;
+        allmsg.add(close);
     }
 
 

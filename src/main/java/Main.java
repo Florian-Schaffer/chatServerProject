@@ -13,7 +13,7 @@ public class Main {
         try {
             boolean go = true;
             Scanner keyboard = new Scanner(System.in);
-            Socket socket = new Socket("localhost", 8188);
+            Socket socket = new Socket("localhost", 8088);
 
             // reader and writer
             Thread tr = new ReadMsg(socket);
