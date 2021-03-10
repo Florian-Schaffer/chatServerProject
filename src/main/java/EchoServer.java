@@ -13,6 +13,8 @@ import java.util.concurrent.*;
 public class EchoServer {
     //public static final int DEFAULT_PORT = 2345;
 
+
+
     ConcurrentMap<String,Socket> allClients = new ConcurrentHashMap<>();
     BlockingQueue<String> allmsg = new ArrayBlockingQueue<String>(200);
     ConcurrentMap<String,PrintWriter> allNamedPrintwriters = new ConcurrentHashMap<>();
@@ -68,5 +70,30 @@ public class EchoServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /*public void online(ConcurrentMap<String,Socket> allClients){
+        EchoClient ec = new EchoClient();
+        while(true){
+            if(ec.getCommand.equals("CONNECT")){
+                System.out.println(getAllClients());
+            }
+            else if(ecdisconnect){
+                System.out.println(getAllClients());
+            }
+        }
+
+    }*/
+
+    public ConcurrentMap<String, Socket> getAllClients() {
+        return allClients;
+    }
+
+    public BlockingQueue<String> getAllmsg() {
+        return allmsg;
+    }
+
+    public ConcurrentMap<String, PrintWriter> getAllNamedPrintwriters() {
+        return allNamedPrintwriters;
     }
 }

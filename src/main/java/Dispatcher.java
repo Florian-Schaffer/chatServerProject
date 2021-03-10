@@ -14,6 +14,7 @@ public class Dispatcher  extends Thread{
 
     }
 
+
     @Override
     public void run() {
         // this checks and send message to all
@@ -27,7 +28,7 @@ public class Dispatcher  extends Thread{
         }
     }
 
-    private void sendMessageToAll(String msg) {
+    public void sendMessageToAll(String msg) {
         for (PrintWriter pw: allWriters) {
             pw.println(msg);
             //TODO; past message and find reciperens name;
