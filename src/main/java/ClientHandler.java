@@ -14,6 +14,8 @@ public class ClientHandler implements Runnable{
     private ArrayList<ClientHandler> clients;
     BlockingQueue<String> allmsg;
     String name;
+    String messages;
+    String[] commandArray;
 
     public ClientHandler(Socket clientSocket, ArrayList<ClientHandler> clients) throws IOException{
         this.client = clientSocket;
@@ -22,12 +24,12 @@ public class ClientHandler implements Runnable{
         out = new PrintWriter(client.getOutputStream(),true);
 
     }
-    public ClientHandler(Socket clientSocket, BlockingQueue<String> allmsg) throws IOException{
+    /*public ClientHandler(Socket clientSocket, BlockingQueue<String> allmsg) throws IOException{
         this.client = clientSocket;
         in = new BufferedReader(new InputStreamReader(client.getInputStream()));
         out = new PrintWriter(client.getOutputStream(),true);
 
-    }
+    }*/
     public ClientHandler(String name, BufferedReader br, PrintWriter pw, BlockingQueue<String> allmsg){
         this.name = name;
         this.in = br;
@@ -35,24 +37,55 @@ public class ClientHandler implements Runnable{
         this.allmsg = allmsg;
 
     }
-    public void Protocol(){
-        //while(true){
-            String request = null;
-            try {
-                request = in.readLine();
-                //TODO: SEND#Lone#Hej med dig (Send fra Kurt)
-                // TODO: Sendes til dispatcheren
-                String messages = "SEND#Kurt,Lone#Hej med dig";
-                allmsg.add(messages);
+    public void Protocol() throws IOException {
+        while(true){
+            String command = in.readLine();
+            System.out.println(command);
 
+            commandArray = command.split("#");
 
+                switch(commandArray[0]) {
+                    case "CONNECT":
+                        handleConnect();
 
-
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
+                        break;
+                    case "SEND":
+                        handleSend(command);
+                        break;
+                    case "CLOSE":
+                        handleClose(0);
+                        break;
+                    default:
+                        handleClose(1);
+                        break;
+                }
             }
+        }
+            /*if (command.equals("CLOSE#")) break;
+
+            if (command.equals("ONLINE#")) {
+                System.out.println(es.getAllClients());
+            }
+
+            if (command.startsWith("SEND")) {
+                int firstSpace = command.indexOf("#");
+                if (firstSpace != -1) {
+                    dispatcher.sendMessageToAll(command.substring(firstSpace + 1));
+                }
+                out.println(command);  }*/
+
+
+                //TODO: SEND#Lone#Hej med dig (Send fra Kurt)
+                //TODO: "SEND#Kurt,Lone#Hej med dig" (Send fra Kurt)
+
+                //TODO: "MESSAGE#Kurt#Hej med dig" (Find Lones printwriter sådan at: Lonepw.printLn("MESSAGE#Kurt#Hej med dig"))
+
+                // TODO: Sendes til dispatcheren
+               // String messages = "SEND#Kurt,Lone#Hej med dig";
+
+
+
+
             /*if(request.contains("help")){
                 out.println(EchoServer.getHelp());
             }else if(request.startsWith("/s")){
@@ -62,12 +95,31 @@ public class ClientHandler implements Runnable{
                 }
             }*/
        // }
+
+
+    private void handleConnect() {
+        String out = "ONLINE#";
+        allmsg.add(out);
+    }
+
+    private void handleSend(String msg){
+        String out = commandArray[0]+"#"+name+","+commandArray[1]+"#"+commandArray[2];
+        allmsg.add(out);
+    }
+
+    private void handleClose(int i){
+        String close = "CLOSE#"+name+"#"+i;
+        allmsg.add(close);
     }
 
 
     @Override
     public void run() {
-        Protocol();
+        try {
+            Protocol();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
 
     }
 }
