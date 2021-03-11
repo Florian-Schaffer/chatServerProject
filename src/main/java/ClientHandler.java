@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.concurrent.BlockingQueue;
 
-public class ClientHandler implements Runnable{
+public class ClientHandler implements Runnable {
     private Socket client;
     private BufferedReader in;
     private PrintWriter out;

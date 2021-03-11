@@ -14,3 +14,120 @@
   <thread>1</thread>
   <message>Server is running and waiting for a connection to be established</message>
 </record>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-03-11T11:25:34.830801200Z</date>
+  <millis>1615461934830</millis>
+  <nanos>801200</nanos>
+  <sequence>0</sequence>
+  <logger>com.javacodegeeks.snippets.core</logger>
+  <level>INFO</level>
+  <class>WriteLogEntriesToLogFile</class>
+  <method>logEventInfo</method>
+  <thread>1</thread>
+  <message>emil has connected to the chatserver!</message>
+</record>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-03-11T11:36:12.043107500Z</date>
+  <millis>1615462572043</millis>
+  <nanos>107500</nanos>
+  <sequence>0</sequence>
+  <logger>com.javacodegeeks.snippets.core</logger>
+  <level>INFO</level>
+  <class>WriteLogEntriesToLogFile</class>
+  <method>logEventInfo</method>
+  <thread>1</thread>
+  <message>emil has connected to the chatserver!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-03-11T11:39:07.293808Z</date>
+  <millis>1615462747293</millis>
+  <nanos>808000</nanos>
+  <sequence>0</sequence>
+  <logger>com.javacodegeeks.snippets.core</logger>
+  <level>INFO</level>
+  <class>WriteLogEntriesToLogFile</class>
+  <method>logEventInfo</method>
+  <thread>1</thread>
+  <message>eril' has connected to the chatserver!</message>
+</record>
+<record>
+  <date>2021-03-11T11:39:33.848706700Z</date>
+  <millis>1615462773848</millis>
+  <nanos>706700</nanos>
+  <sequence>1</sequence>
+  <logger>com.javacodegeeks.snippets.core</logger>
+  <level>WARNING</level>
+  <class>WriteLogEntriesToLogFile</class>
+  <method>logEventWarning</method>
+  <thread>24</thread>
+  <message>eril' just disconnected from the chatserver!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-03-11T11:39:58.154425900Z</date>
+  <millis>1615462798154</millis>
+  <nanos>425900</nanos>
+  <sequence>0</sequence>
+  <logger>com.javacodegeeks.snippets.core</logger>
+  <level>INFO</level>
+  <class>WriteLogEntriesToLogFile</class>
+  <method>logEventInfo</method>
+  <thread>1</thread>
+  <message>EMIL has connected to the chatserver!</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-03-11T11:45:00.527686500Z</date>
+  <millis>1615463100527</millis>
+  <nanos>686500</nanos>
+  <sequence>0</sequence>
+  <logger>com.javacodegeeks.snippets.core</logger>
+  <level>INFO</level>
+  <class>WriteLogEntriesToLogFile</class>
+  <method>logEventInfo</method>
+  <thread>1</thread>
+  <message>EMIL has connected to the chatserver!</message>
+</record>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-03-11T11:49:17.617313400Z</date>
+  <millis>1615463357617</millis>
+  <nanos>313400</nanos>
+  <sequence>0</sequence>
+  <logger>com.javacodegeeks.snippets.core</logger>
+  <level>INFO</level>
+  <class>WriteLogEntriesToLogFile</class>
+  <method>logEventInfo</method>
+  <thread>1</thread>
+  <message>emil has connected to the chatserver!</message>
+</record>
+<record>
+  <date>2021-03-11T11:50:03.110164400Z</date>
+  <millis>1615463403110</millis>
+  <nanos>164400</nanos>
+  <sequence>1</sequence>
+  <logger>com.javacodegeeks.snippets.core</logger>
+  <level>INFO</level>
+  <class>WriteLogEntriesToLogFile</class>
+  <method>logEventInfo</method>
+  <thread>1</thread>
+  <message>GLORIAN has connected to the chatserver!</message>
+</record>

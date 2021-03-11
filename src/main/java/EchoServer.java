@@ -1,4 +1,4 @@
-import com.sun.security.ntlm.Server;
+//import com.sun.security.ntlm.Server;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,9 +41,10 @@ public class EchoServer {
         try {
             ServerSocket ss = new ServerSocket(8088);
             Dispatcher dispatcher = new Dispatcher(allmsg,allNamedPrintwriters,clientsToBeRemoved);
-            Cleanup cleanup = new Cleanup(allmsg,allClients);
+            Cleanup cleanup = new Cleanup(clientsToBeRemoved,allClients);
             cleanup.start();
             dispatcher.start();
+            logger.initializeLogger();
 
             while (true) {
                 Socket client = ss.accept();
