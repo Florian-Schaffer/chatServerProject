@@ -17,6 +17,7 @@ public class EchoServer {
     WriteLogEntriesToLogFile logger = new WriteLogEntriesToLogFile();
     ConcurrentMap<String,Socket> allClients = new ConcurrentHashMap<>();
     BlockingQueue<String> allmsg = new ArrayBlockingQueue<String>(200);
+    BlockingQueue<String> clientsToBeRemoved = new ArrayBlockingQueue<String>(200);
     ConcurrentMap<String,PrintWriter> allNamedPrintwriters = new ConcurrentHashMap<>();
 
     public static void main(String[] args) {
@@ -39,7 +40,9 @@ public class EchoServer {
 
         try {
             ServerSocket ss = new ServerSocket(8088);
-            Dispatcher dispatcher = new Dispatcher(allmsg,allNamedPrintwriters);
+            Dispatcher dispatcher = new Dispatcher(allmsg,allNamedPrintwriters,clientsToBeRemoved);
+            Cleanup cleanup = new Cleanup(allmsg,allClients);
+            cleanup.start();
             dispatcher.start();
 
             while (true) {

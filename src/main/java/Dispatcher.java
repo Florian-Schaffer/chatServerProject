@@ -10,10 +10,12 @@ public class Dispatcher  extends Thread {
     BlockingQueue<PrintWriter> allWriters;
     ConcurrentMap<String,PrintWriter> allNamedPrintwriters;
     WriteLogEntriesToLogFile logger = new WriteLogEntriesToLogFile();
+    BlockingQueue<String> clientsToBeRemoved;
 
-    public Dispatcher(BlockingQueue<String> allMsg,ConcurrentMap<String,PrintWriter> allNamedPrintwriters) {
+    public Dispatcher(BlockingQueue<String> allMsg, ConcurrentMap<String, PrintWriter> allNamedPrintwriters, BlockingQueue<String> clientsToBeRemoved) {
         this.allMsg = allMsg;
         this.allNamedPrintwriters = allNamedPrintwriters;
+        this.clientsToBeRemoved = clientsToBeRemoved;
     }
 
 
@@ -51,6 +53,7 @@ public class Dispatcher  extends Thread {
             getPrintWriter(clientArray[1]).println(clientArray[0]+"#"+clientArray[2]);
             String closedClientID = clientArray[1];
             allNamedPrintwriters.remove(clientArray[1]);
+            clientsToBeRemoved.add(closedClientID);
             try {
                 logger.logEventWarning(closedClientID + " just disconnected from the chatserver!");
             } catch (IOException e) {
