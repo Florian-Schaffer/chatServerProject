@@ -14,6 +14,7 @@ import java.util.concurrent.*;
 
 public class EchoServer {
     //public static final int DEFAULT_PORT = 2345;
+    WriteLogEntriesToLogFile logger = new WriteLogEntriesToLogFile();
     ConcurrentMap<String,Socket> allClients = new ConcurrentHashMap<>();
     BlockingQueue<String> allmsg = new ArrayBlockingQueue<String>(200);
     ConcurrentMap<String,PrintWriter> allNamedPrintwriters = new ConcurrentHashMap<>();
@@ -49,6 +50,7 @@ public class EchoServer {
                 String input = br.readLine();
                 System.out.println(input);
                 String name = input.substring(8);
+                logger.logEventInfo(name + " has connected to the chatserver!");
                 allClients.put(name,client);
                 allNamedPrintwriters.put(name,printWriter);
                 ClientHandler cl = new ClientHandler(name,br, printWriter, allmsg);
@@ -58,12 +60,6 @@ public class EchoServer {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public void serverCrash() throws ServerCrashException {
-        if () {
-            throw new ServerCrashException("your shit has crashed man!");
         }
     }
 

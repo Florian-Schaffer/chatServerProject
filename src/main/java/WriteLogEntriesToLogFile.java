@@ -6,7 +6,7 @@ public class WriteLogEntriesToLogFile {
 
     private Logger logger;
 
-    public static void main(String[] args) throws Exception {
+    public void initializeLogger() throws IOException {
         boolean append = true;
         FileHandler handler = new FileHandler("serverLog.txt", append);
 

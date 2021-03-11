@@ -3,14 +3,16 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Main {
+    WriteLogEntriesToLogFile logger = new WriteLogEntriesToLogFile();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Main main = new Main();
         main.runClient();
     }
 
-    private void runClient() {
+    private void runClient() throws Exception {
         try {
+            logger.initializeLogger();
             boolean go = true;
             Scanner keyboard = new Scanner(System.in);
             Socket socket = new Socket("localhost", 8088);
