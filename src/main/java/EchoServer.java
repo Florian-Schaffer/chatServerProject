@@ -1,3 +1,5 @@
+import com.sun.security.ntlm.Server;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,14 +14,9 @@ import java.util.concurrent.*;
 
 public class EchoServer {
     //public static final int DEFAULT_PORT = 2345;
-
-
-
     ConcurrentMap<String,Socket> allClients = new ConcurrentHashMap<>();
     BlockingQueue<String> allmsg = new ArrayBlockingQueue<String>(200);
     ConcurrentMap<String,PrintWriter> allNamedPrintwriters = new ConcurrentHashMap<>();
-
-
 
     public static void main(String[] args) {
         int port = 8088;
@@ -32,12 +29,12 @@ public class EchoServer {
 
     public static String getHelp() {
         String returnValue ="";
-
         return returnValue;
     }
 
-    private void runProgram() {
 
+    //we dont know about this
+    private void runProgram() {
 
         try {
             ServerSocket ss = new ServerSocket(8088);
@@ -46,30 +43,27 @@ public class EchoServer {
 
             while (true) {
                 Socket client = ss.accept();
-
                 InputStreamReader ir = new InputStreamReader(client.getInputStream());
                 PrintWriter printWriter = new PrintWriter(client.getOutputStream(),true);
                 BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream()));
-
-
                 String input = br.readLine();
                 System.out.println(input);
                 String name = input.substring(8);
                 allClients.put(name,client);
                 allNamedPrintwriters.put(name,printWriter);
-                        //CONNECT#Kurt
-                        //SEND#Peter#Hello Peter
-
-
                 ClientHandler cl = new ClientHandler(name,br, printWriter, allmsg);
                 Thread t = new Thread(cl);
                 t.start();
                 allmsg.add("ONLINE#");
             }
-
-
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void serverCrash() throws ServerCrashException {
+        if () {
+            throw new ServerCrashException("your shit has crashed man!");
         }
     }
 
